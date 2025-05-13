@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-examples:
-    name: Build Arduino Examples for Digispark
+    name: Build Rubber Ducky Examples
     runs-on: ubuntu-latest
 
     steps:
