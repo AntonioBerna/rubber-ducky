@@ -7,6 +7,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/AntonioBerna/rubber-ducky)
 ![GitHub License](https://img.shields.io/github/license/AntonioBerna/rubber-ducky)
 ![GitHub Created At](https://img.shields.io/github/created-at/antonioberna/rubber-ducky)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/AntonioBerna/rubber-ducky/build-examples.yml)
 
 ## Introduction
 
