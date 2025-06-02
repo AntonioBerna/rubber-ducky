@@ -9,7 +9,7 @@
  *
  * @author AntonioBerna
  * @date 2025
- * @copyright GPL-3.0 License 
+ * @copyright GPL-3.0 License
  */
 
 #include "RubberDucky.h"
